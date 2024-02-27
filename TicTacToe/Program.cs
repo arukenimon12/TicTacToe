@@ -113,11 +113,18 @@ namespace TicTacToe
 
         static bool isGameOver()
         {
-            bool isGameOver_ = false;
+            bool isGameOver_ = true;
 
-            for(int i = 0; )
+            for(int i = 0; i<board.GetLength(0);i++)
+            {
+                for (int x = 0; x < board.GetLength(1); x++)
+                {
+                    if (board[i, x] != "X" && board[i, x] != "O")
+                        isGameOver_ = false;
+                }
+            }
 
-            return false;
+            return isGameOver_;
         }
 
         static void Main(string[] args)
@@ -143,13 +150,37 @@ namespace TicTacToe
                     {
                         UpdateBoard(iChoice);
 
+                        void Retry()
+                        {
+                            Console.Write("Retry?(Y/N) :");
+                            string choice_ = Console.ReadLine();
+
+                            if (choice_.ToLower() == "y")
+                                Main(null);
+                            else if (choice_.ToLower() == "n")
+                                isOver = true;
+                            else
+                                Retry();
+                        }
+                        // X  Og
                         if(CheckWin())
                         {
-                            isOver = true;
+                            //isOver = true;
                             Console.Clear();
                             DrawBoard();
                             Console.WriteLine($"Player {playerTurn} wins!");
-                        }else if()
+
+                            Retry();
+                        }
+                        else if(isGameOver())
+                        {
+                            //isOver = true;
+                            Console.Clear();
+                            DrawBoard();
+                            Console.WriteLine($"Game Over");
+
+                            Retry();
+                        }
 
 
 
