@@ -132,7 +132,7 @@ namespace TicTacToe
             ResetBoard();
             do
             {
-                Console.Clear();
+                Console.Clear(); //
                 DrawBoard();
 
                 back:
